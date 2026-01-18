@@ -1,50 +1,46 @@
 # AetherCalc
 
-A modern, high-performance cross-platform calculator built with **Avalonia UI** and **.NET 10**. This project demonstrates a clean implementation of the **MVVM pattern** and service-oriented architecture.
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
+
+**AetherCalc** is a modern, lightweight, and professional cross-platform calculator built with .NET 10 and Avalonia UI. It offers a sleek dark interface and high-precision calculations.
 
 
+
+## 📥 Installation
+
+You can download the latest pre-compiled binaries from the [Releases](https://github.com/CodeWithBotinaOficial/AetherCalc/releases) page.
+
+### 🐧 Linux (Ubuntu/Debian/Others)
+1. Download `AetherCalc-Linux.zip`.
+2. Extract the contents: `unzip AetherCalc-Linux.zip`.
+3. Give execution permissions: `chmod +x AetherCalc`.
+4. Run it: `./AetherCalc`.
+
+### 🪟 Windows
+1. Download `AetherCalc-Windows.zip`.
+2. Extract the folder.
+3. Double-click `AetherCalc.exe`.
+*Note: No .NET runtime installation is required (Self-contained).*
+
+### 🍎 macOS
+1. Download the macOS build (if available in releases).
+2. Open the terminal in the extracted folder.
+3. Run `xattr -cr AetherCalc.app` to bypass the developer verification.
+4. Open the application.
 
 ## 🚀 Features
-- **Modern UI**: Dark-themed, responsive interface designed with Avalonia Fluent Theme.
-- **MVVM Architecture**: Decoupled logic and UI using ReactiveUI.
-- **Service Layer**: Mathematical operations are encapsulated in a testable service.
-- **High Performance**: Built on the latest .NET 10 runtime.
+- **Clean MVVM Design**: Built with ReactiveUI for a smooth experience.
+- **Self-Contained**: No need to install .NET runtimes separately.
+- **Modern UI**: Dark mode by default using the Fluent theme.
 
-## 🛠 Prerequisites
-To run this project, you need:
-- [.NET SDK 10.0+](https://dotnet.microsoft.com/download)
-- A system running Linux (tested on Ubuntu 22.04), Windows, or macOS.
+---
 
-## 📦 Getting Started
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/CodeWithBotinaOficial/AetherCalc.git
-cd AetherCalc
-
-```
-
-### 2. Restore Dependencies
-
-```bash
-dotnet restore
-
-```
-
-### 3. Build and Run
-
-```bash
-dotnet run --project src/AetherCalc/AetherCalc.csproj
-
-```
-
-## 🏗 Project Structure
-
-* `src/AetherCalc/Models`: Business logic and mathematical engines.
-* `src/AetherCalc/Services`: Interface definitions for core services.
-* `src/AetherCalc/ViewModels`: Application state and command handling via ReactiveUI.
-* `src/AetherCalc/Views`: XAML-based UI layouts.
+## 🛠 For Developers
+If you want to build AetherCalc from source or contribute to the project, please check our [CONTRIBUTING.md](./CONTRIBUTING.md) guide.
 
 ## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
-Licensed under the MIT License. See `LICENSE` for details.
+**Created with ❤️ by CodeWithBotina**

@@ -33,15 +33,7 @@ jobs:
       run: dotnet test tests/AetherCalc.Tests/AetherCalc.Tests.csproj --configuration Release
 
     - name: Publish App
-      run: |
-        dotnet publish src/AetherCalc/AetherCalc.csproj \
-          -c Release \
-          -r ${{ matrix.rid }} \
-          --self-contained true \
-          -p:PublishSingleFile=true \
-          -p:PublishReadyToRun=true \
-          -p:IncludeNativeLibrariesForSelfExtract=true \
-          -o ./publish
+      run: dotnet publish src/AetherCalc/AetherCalc.csproj -c Release -r ${{ matrix.rid }} --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
 
     - name: Zip Artifact (Linux)
       if: matrix.os == 'ubuntu-latest'
