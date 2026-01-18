@@ -1,0 +1,23 @@
+## .NET Core
+bin/
+obj/
+TestResults/
+*.exe
+*.dll
+*.pdb
+*.suo
+*.user
+*.sln.doccache
+*.slnx.sqlite
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+
+## OS specific
+.DS_Store
+Thumbs.db
+
+## Publishing
+publish/
+appsettings.Development.json

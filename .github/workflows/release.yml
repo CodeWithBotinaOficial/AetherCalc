@@ -1,0 +1,74 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: AetherCalc-Linux
+            rid: linux-x64
+          - os: windows-latest
+            artifact_name: AetherCalc-Windows
+            rid: win-x64
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore src/AetherCalc/AetherCalc.csproj
+
+    - name: Run Tests
+      run: dotnet test tests/AetherCalc.Tests/AetherCalc.Tests.csproj --configuration Release
+
+    - name: Publish App
+      run: |
+        dotnet publish src/AetherCalc/AetherCalc.csproj \
+          -c Release \
+          -r ${{ matrix.rid }} \
+          --self-contained true \
+          -p:PublishSingleFile=true \
+          -p:PublishReadyToRun=true \
+          -p:IncludeNativeLibrariesForSelfExtract=true \
+          -o ./publish
+
+    - name: Zip Artifact (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: zip -r ${{ matrix.artifact_name }}.zip ./publish/*
+
+    - name: Zip Artifact (Windows)
+      if: matrix.os == 'windows-latest'
+      run: Compress-Archive -Path ./publish/* -DestinationPath ${{ matrix.artifact_name }}.zip
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: ${{ matrix.artifact_name }}.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            AetherCalc-Linux/AetherCalc-Linux.zip
+            AetherCalc-Windows/AetherCalc-Windows.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
